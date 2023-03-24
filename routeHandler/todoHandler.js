@@ -26,19 +26,19 @@ router.post("/", async (req, res) => {
     //         });
     //     }
     // });
-    newTodo
-        .save()
-        .then(() => {
-            res.status(200).json({
-                message: "New Todo saved successfully",
-            });
-        })
-        .catch((err) => {
-            res.status(200).json({
-                error: "There was an error saving the new Todo",
-                code: err,
-            });
+
+    try {
+        const saved = newTodo.save();
+        res.status(200).json({
+            message: "New Todo saved successfully",
+            result: saved,
         });
+    } catch (err) {
+        res.status(200).json({
+            error: "There was an error saving the new Todo",
+            code: err,
+        });
+    }
 });
 
 // POST MULTIPLE TODO
