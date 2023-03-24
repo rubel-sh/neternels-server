@@ -30,7 +30,7 @@ router.post("/", async (req, res) => {
         .save()
         .then(() => {
             res.status(200).json({
-                success: "New Todo saved successfully",
+                message: "New Todo saved successfully",
             });
         })
         .catch((err) => {
@@ -42,7 +42,20 @@ router.post("/", async (req, res) => {
 });
 
 // POST MULTIPLE TODO
-router.post("/all", async (req, res) => {});
+router.post("/all", async (req, res) => {
+    try {
+        Todo.insertMany(req.body);
+        res.status(200).json({
+            message: "Array of objects inserted successfully",
+        });
+    } catch (err) {
+        res.status(500).json({
+            
+            error: "There was an error inserting the new Todo Array",
+            code: err,
+        });
+    }
+});
 
 // UPDATE TODO / PUT TODO
 router.put("/:id", async (req, res) => {});
