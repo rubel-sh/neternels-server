@@ -28,7 +28,7 @@ router.post("/", async (req, res) => {
     // });
 
     try {
-        const saved = newTodo.save();
+        const saved = await newTodo.save();
         res.status(200).json({
             message: "New Todo saved successfully",
             result: saved,
