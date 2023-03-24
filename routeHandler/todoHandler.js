@@ -7,7 +7,22 @@ const todoSchema = require("../schemas/todoSchema");
 const Todo = new mongoose.model("Todo", todoSchema); // Capital + Singular name
 
 // GET ALL THE TODOS
-router.get("/", (req, res) => {});
+router.get("/", async (req, res) => {
+    try {
+        // const getAllTodos = await Todo.find({ status: "active" });
+
+        const getAllTodos = await Todo.find({}).exec();
+        res.status(200).json({
+            message: "Received all the tasks",
+            results: getAllTodos,
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: "There was an error getting todos",
+            code: err,
+        });
+    }
+});
 
 // GET A TODO bt ID
 router.get("/:id", async (req, res) => {});
@@ -34,7 +49,7 @@ router.post("/", async (req, res) => {
             result: saved,
         });
     } catch (err) {
-        res.status(200).json({
+        res.status(500).json({
             error: "There was an error saving the new Todo",
             code: err,
         });
