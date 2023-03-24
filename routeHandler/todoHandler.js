@@ -65,7 +65,7 @@ router.put("/:id", async (req, res) => {
         // 3 parameter : callback => eita try catch e convert hobe
 
         // updateOne return {acknoledged, updateCount, ...}
-        // findByIdAndUpdate returns { updated doc }
+        // findByIdAndUpdate returns { updated doc is new:true option is given }
         const updateOne = await Todo.findByIdAndUpdate(
             { _id: req.params.id },
             { $set: { status: "active" } },
