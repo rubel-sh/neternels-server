@@ -9,7 +9,11 @@ const Todo = new mongoose.model("Todo", todoSchema); // Capital + Singular name
 // GET ALL THE TODOS
 router.get("/", async (req, res) => {
     try {
-        const getAllTodos = await Todo.find({ status: "active" });
+        const getAllTodos = await Todo.find({ status: "active" })
+            .select({
+                title: 1, //Will show only title field
+            })
+            .limit(2); // Will return only fist two titles
         res.status(200).json({
             message: "Received all the tasks",
             results: getAllTodos,
