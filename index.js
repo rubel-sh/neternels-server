@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const todoHandler = require("./routeHandler/todoHandler");
 
 // exoress aoo initialization
 const app = express();
