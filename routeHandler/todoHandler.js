@@ -114,6 +114,19 @@ router.put("/:id", async (req, res) => {
 });
 
 // DELETE TODO
-router.delete("/id", async (req, res) => {});
+router.delete("/:id", async (req, res) => {
+    try {
+        const deleteTodo = await Todo.deleteOne({ _id: req.params.id });
+        res.status(200).json({
+            message: "Deleted a todo with id",
+            results: deleteTodo,
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: "There was an error deleting todos",
+            code: err,
+        });
+    }
+});
 
 module.exports = router;
