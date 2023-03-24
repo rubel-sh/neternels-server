@@ -12,6 +12,7 @@ mongoose
     .catch((err) => console.error(err));
 
 // application routes
+app.use("/todo", todoHandler);
 
 // default error handler
 function errorHandler(err, req, res, next) {
