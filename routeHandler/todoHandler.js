@@ -44,13 +44,13 @@ router.post("/", async (req, res) => {
 // POST MULTIPLE TODO
 router.post("/all", async (req, res) => {
     try {
-        Todo.insertMany(req.body);
+        const InsetMany = await Todo.insertMany(req.body);
         res.status(200).json({
             message: "Array of objects inserted successfully",
+            result: InsetMany,
         });
     } catch (err) {
         res.status(500).json({
-            
             error: "There was an error inserting the new Todo Array",
             code: err,
         });
@@ -58,7 +58,23 @@ router.post("/all", async (req, res) => {
 });
 
 // UPDATE TODO / PUT TODO
-router.put("/:id", async (req, res) => {});
+router.put("/:id", async (req, res) => {
+    try {
+        // 1 parameter : Khujo
+        // 2 parameter : Ki update korbo
+        // 3 parameter : callback => eita try catch e convert hobe
+        const updateOne = await Todo.updateOne({ _id: req.params.id }, { $set: { status: "active" } });
+        res.status(200).json({
+            message: "Updated Successfully",
+            result: updateOne,
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: "There was an error updating the Todo",
+            code: err,
+        });
+    }
+});
 
 // DELETE TODO
 router.delete("/id", async (req, res) => {});
