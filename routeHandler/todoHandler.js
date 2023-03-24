@@ -12,8 +12,34 @@ router.get("/", (req, res) => {});
 // GET A TODO bt ID
 router.get("/:id", async (req, res) => {});
 
-// POST TODO
-router.post("/", async (req, res) => {});
+// POST A TODO
+router.post("/", async (req, res) => {
+    const newTodo = new Todo(req.body);
+    // await newTodo.save((err) => {
+    //     if (err) {
+    //         res.status(500).json({
+    //             error: "There was an error saving the new Todo",
+    //         });
+    //     } else {
+    //         res.status(200).json({
+    //             error: "New Todo saved successfully",
+    //         });
+    //     }
+    // });
+    newTodo
+        .save()
+        .then(() => {
+            res.status(200).json({
+                success: "New Todo saved successfully",
+            });
+        })
+        .catch((err) => {
+            res.status(200).json({
+                error: "There was an error saving the new Todo",
+                code: err,
+            });
+        });
+});
 
 // POST MULTIPLE TODO
 router.post("/all", async (req, res) => {});

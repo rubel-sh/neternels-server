@@ -11,7 +11,7 @@ const todoSchema = mongoose.Schema({
         enum: ["active", "inactive"], // accepts either active or inctive
     },
     date: {
-        type: DataTransfer,
+        type: Date,
         default: Date.now,
     },
 });
