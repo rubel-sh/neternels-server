@@ -9,9 +9,7 @@ const Todo = new mongoose.model("Todo", todoSchema); // Capital + Singular name
 // GET ALL THE TODOS
 router.get("/", async (req, res) => {
     try {
-        // const getAllTodos = await Todo.find({ status: "active" });
-
-        const getAllTodos = await Todo.find({}).exec();
+        const getAllTodos = await Todo.find({ status: "active" });
         res.status(200).json({
             message: "Received all the tasks",
             results: getAllTodos,
