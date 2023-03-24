@@ -27,7 +27,20 @@ router.get("/", async (req, res) => {
 });
 
 // GET A TODO bt ID
-router.get("/:id", async (req, res) => {});
+router.get("/:id", async (req, res) => {
+    try {
+        const getAllTodos = await Todo.find({ _id: req.params.id });
+        res.status(200).json({
+            message: "Received all the tasks",
+            results: getAllTodos,
+        });
+    } catch (err) {
+        res.status(500).json({
+            error: "There was an error getting todos",
+            code: err,
+        });
+    }
+});
 
 // POST A TODO
 router.post("/", async (req, res) => {
