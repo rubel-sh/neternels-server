@@ -1,8 +1,15 @@
 const express = require("express");
+const mongoose = require("mongoose");
 
 // exoress aoo initialization
 const app = express();
 app.use(express.json());
+
+// Database connection with mongoose
+mongoose
+    .connect("mongodb://127.0.0.1:27017")
+    .then(() => console.log("connection established"))
+    .catch((err) => console.error(err));
 
 // application routes
 
