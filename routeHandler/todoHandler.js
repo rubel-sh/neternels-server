@@ -1,5 +1,10 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
+const todoSchema = require("../schemas/todoSchema");
+
+// Creating Model
+const Todo = new mongoose.model("Todo", todoSchema); // Capital + Singular name
 
 // GET ALL THE TODOS
 router.get("/", (req, res) => {});
