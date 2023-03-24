@@ -63,7 +63,14 @@ router.put("/:id", async (req, res) => {
         // 1 parameter : Khujo
         // 2 parameter : Ki update korbo
         // 3 parameter : callback => eita try catch e convert hobe
-        const updateOne = await Todo.updateOne({ _id: req.params.id }, { $set: { status: "active" } });
+
+        // updateOne return {acknoledged, updateCount, ...}
+        // findByIdAndUpdate returns { updated doc }
+        const updateOne = await Todo.findByIdAndUpdate(
+            { _id: req.params.id },
+            { $set: { status: "active" } },
+            { new: true }
+        );
         res.status(200).json({
             message: "Updated Successfully",
             result: updateOne,
