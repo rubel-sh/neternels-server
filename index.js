@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 const deviceRoutes = require("./routes/deviceRoutes");
 const brandRoutes = require("./routes/brandRoutes");
+const changelogRoutes = require("./routes/changelogRoutes");
 
 // exoress aoo initialization
 const app = express();
@@ -17,6 +18,7 @@ mongoose
 // application routes
 app.use("/api/devices", deviceRoutes);
 app.use("/api/brands", brandRoutes);
+app.use("/api/changelogs", changelogRoutes);
 
 // default error handler
 function errorHandler(err, req, res, next) {
