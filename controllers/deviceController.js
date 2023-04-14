@@ -12,7 +12,6 @@ const addDevice = async (req, res) => {
 
 const getDevices = async (req, res) => {
     try {
-        console.log("I'm coming");
         const latestDevice = await Device.find({});
         return res.status(200).json({ latestDevice });
     } catch (err) {
