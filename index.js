@@ -29,6 +29,6 @@ function errorHandler(err, req, res, next) {
     res.status(500).json({ error: err });
 }
 
-app.listen(3000, () => {
+app.listen(3069, () => {
     console.log("App is running on port 3000");
 });

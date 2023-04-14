@@ -1,19 +1,21 @@
 const mongoose = require("mongoose");
 
-const changelogSchema = mongoose.Schema({
-    codename: {
-        type: String,
-        require: true,
+const changelogSchema = new mongoose.Schema(
+    {
+        codename: {
+            type: String,
+            require: true,
+        },
+
+        changelogs: {
+            type: String,
+            require: true,
+        },
     },
-    createdAt: {
-        type: Date,
-        default: Date.now,
-    },
-    changelogs: {
-        type: String,
-        require: true,
-    },
-});
+    {
+        timestamps: true,
+    }
+);
 
 const Changelog = mongoose.model("Changelog", changelogSchema);
 
