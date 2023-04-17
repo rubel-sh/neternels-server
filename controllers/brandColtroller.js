@@ -11,4 +11,13 @@ const addBrand = async (req, res) => {
     }
 };
 
-module.exports = { addBrand };
+const getBrands = async (req, res) => {
+    try {
+        const getBrands = await Brand.find({});
+        res.status(200).json({ response: getBrands });
+    } catch (err) {
+        res.status(404).json({ message: err.message });
+    }
+};
+
+module.exports = { addBrand, getBrands };

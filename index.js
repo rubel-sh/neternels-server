@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const deviceRoutes = require("./routes/deviceRoutes");
 const brandRoutes = require("./routes/brandRoutes");
@@ -7,6 +8,7 @@ const changelogRoutes = require("./routes/changelogRoutes");
 
 // exoress aoo initialization
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // Database connection with mongoose

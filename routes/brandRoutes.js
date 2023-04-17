@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
-const { addBrand } = require("../controllers/brandColtroller");
+const { addBrand, getBrands } = require("../controllers/brandColtroller");
 
-router.use("/", addBrand);
+router.post("/", addBrand);
+router.get("/", getBrands);
 
 module.exports = router;
